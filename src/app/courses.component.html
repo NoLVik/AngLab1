@@ -1,0 +1,28 @@
+<div style="font-family: sans-serif; max-width: 600px; margin: 20px auto;">
+  <h2>Пошук курсів</h2>
+
+  <input 
+    type="text" 
+    [formControl]="searchControl" 
+    placeholder="Введіть назву курсу (напр. Angular)..." 
+    style="width: 100%; padding: 10px; margin-bottom: 20px; font-size: 16px;"
+  >
+
+  <ng-container *ngIf="courses$ | async as courses; else loading">
+    <div *ngIf="courses.length > 0; else noResults">
+      <div *ngFor="let course of courses" style="border: 1px solid #ccc; padding: 15px; margin-bottom: 10px; border-radius: 8px;">
+        <h3 style="margin-top: 0;">{{ course.title }}</h3>
+        <p style="margin: 5px 0;"><strong>Категорія:</strong> {{ course.category }}</p>
+        <p style="margin: 5px 0;"><strong>Тривалість:</strong> {{ course.duration }}</p>
+      </div>
+    </div>
+
+    <ng-template #noResults>
+      <p>За вашим запитом нічого не знайдено.</p>
+    </ng-template>
+  </ng-container>
+
+  <ng-template #loading>
+    <p>Завантаження курсів...</p>
+  </ng-template>
+</div>
