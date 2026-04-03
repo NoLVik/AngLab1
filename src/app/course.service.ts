@@ -10,7 +10,10 @@ export class CourseService {
   private initialCourses: Course[] = [
     { id: 1, title: 'Основи JavaScript', category: 'Програмування', duration: '10 годин' },
     { id: 2, title: 'Angular та RxJS', category: 'Фреймворки', duration: '15 годин' },
-    { id: 3, title: 'Проєктування UI/UX', category: 'Дизайн', duration: '12 годин' }
+    { id: 3, title: 'Проєктування UI/UX', category: 'Дизайн', duration: '12 годин' },
+    { id: 4, title: 'Бази даних та SQL', category: 'Бази даних', duration: '20 годин' },
+    { id: 5, title: 'Просунутий Python', category: 'Програмування', duration: '18 годин' },
+    { id: 6, title: 'Основи React', category: 'Фреймворки', duration: '14 годин' }
   ];
 
   private coursesSubject = new BehaviorSubject<Course[]>(this.initialCourses);

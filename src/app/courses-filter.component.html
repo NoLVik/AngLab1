@@ -1,0 +1,35 @@
+<div style="font-family: sans-serif; max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
+  <h2>Комбінований фільтр курсів</h2>
+
+  <div style="display: flex; gap: 15px; margin-bottom: 25px;">
+    <input 
+      type="text" 
+      [formControl]="searchControl" 
+      placeholder="Пошук за назвою..." 
+      style="flex: 1; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px;"
+    >
+    
+    <select 
+      [formControl]="categoryControl" 
+      style="padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px;"
+    >
+      <option value="">Усі категорії</option>
+      <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+    </select>
+  </div>
+
+  <ng-container *ngIf="filteredCourses$ | async as courses">
+    <div *ngIf="courses.length > 0; else noResults">
+      <div *ngFor="let course of courses" style="background: #f9f9f9; border-left: 4px solid #007bff; padding: 15px; margin-bottom: 10px; border-radius: 4px;">
+        <h3 style="margin: 0 0 5px 0;">{{ course.title }}</h3>
+        <p style="margin: 0; font-size: 14px; color: #555;">
+          <strong>Категорія:</strong> {{ course.category }} | <strong>Тривалість:</strong> {{ course.duration }}
+        </p>
+      </div>
+    </div>
+
+    <ng-template #noResults>
+      <p style="color: #dc3545; font-weight: bold;">За вибраними фільтрами курсів не знайдено.</p>
+    </ng-template>
+  </ng-container>
+</div>
