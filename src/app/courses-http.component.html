@@ -1,0 +1,26 @@
+<div style="font-family: sans-serif; max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
+  <h2>Список курсів</h2>
+
+  <button (click)="loadCourses()" [disabled]="isLoading" style="margin-bottom: 20px; padding: 8px 15px; cursor: pointer;">
+    Оновити дані
+  </button>
+
+  <div *ngIf="isLoading" style="padding: 20px; background: #e9ecef; text-align: center; border-radius: 4px;">
+    <p>⏳ Завантаження курсів з сервера...</p>
+  </div>
+
+  <div *ngIf="errorMessage && !isLoading" style="padding: 20px; background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; border-radius: 4px;">
+    <p>⚠️ {{ errorMessage }}</p>
+  </div>
+
+  <div *ngIf="!isLoading && !errorMessage">
+    <div *ngFor="let course of courses" style="border: 1px solid #ccc; padding: 15px; margin-bottom: 10px; border-radius: 8px; background: #fff;">
+      <h3 style="margin: 0 0 5px 0;">{{ course.title }}</h3>
+      <p style="margin: 0; font-size: 14px; color: #555;">
+        <strong>ID:</strong> {{ course.id }} | 
+        <strong>Категорія:</strong> {{ course.category }} | 
+        <strong>Тривалість:</strong> {{ course.duration }} год.
+      </p>
+    </div>
+  </div>
+</div>
